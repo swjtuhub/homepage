@@ -1,0 +1,29 @@
+name: Site Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: website-deploy-${{ github.ref }}
+      cancel-in-progress: true
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node Environment
+        uses: ./.github/actions/setup-node
+
+      - name: Build Site
+        run: pnpm build && touch ./out/.nojekyll
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist
