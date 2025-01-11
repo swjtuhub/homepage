@@ -57,7 +57,7 @@ export default function HomePage() {
       <div className="text-center mt-12">
         <div className="space-x-8">
           <a
-            href="mailto:swjtuhub@foxmail.com"
+            href="mailto:i@swjtu.top"
             className="text-2xl text-gray-800 hover:text-blue-500 transition-colors duration-200"
             target="_blank"
             rel="noopener noreferrer">
